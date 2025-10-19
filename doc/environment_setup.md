@@ -32,15 +32,7 @@
   - [Troubleshooting](#troubleshooting)
   - [Verification](#verification)
   - [References](#references)
-- [create\_freeipa\_users.sh](#create_freeipa_userssh)
-- [Create 20 realistic users in FreeIPA](#create-20-realistic-users-in-freeipa)
-- [Run as a user with a Kerberos ticket (kinit admin)](#run-as-a-user-with-a-kerberos-ticket-kinit-admin)
-- [Configuration](#configuration)
-- [Realistic names (20)](#realistic-names-20)
-- [Sanity check: array length](#sanity-check-array-length)
-- [Obtain Kerberos ticket](#obtain-kerberos-ticket)
-- [Check if user exists](#check-if-user-exists)
-- [Create user](#create-user)
+
 
 ## Prerequisites
 
@@ -350,3 +342,4 @@
 - [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
 - [SailPoint Docs](https://documentation.sailpoint.com/identityiq)
 
+#Next Open freeipa_deployment.md for database, Ldap and Kerberos Integration on iiq.
