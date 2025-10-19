@@ -342,4 +342,4 @@
 - [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
 - [SailPoint Docs](https://documentation.sailpoint.com/identityiq)
 
-#Next Open freeipa_deployment.md for database, Ldap and Kerberos Integration on iiq.
+##Next Open freeipa_deployment.md for database, Ldap and Kerberos Integration on iiq.
