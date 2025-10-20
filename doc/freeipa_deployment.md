@@ -233,6 +233,11 @@ ldapsearch -x -H ldap://ipa.demo.local:389 -D "uid=admin,cn=users,cn=accounts,dc
 - Enter password: `SailPoint123!`
 - Expected: Lists all users under `cn=users,cn=accounts,dc=demo,dc=local`.
 
+Login WebUI Dashboard 
+
+<img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/9ecf6138-f12a-4599-b8f1-0757e43e72a9" />
+
+
 ---
 
 ## 6. Next Steps
