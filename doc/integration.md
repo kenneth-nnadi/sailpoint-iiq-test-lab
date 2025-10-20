@@ -5,7 +5,7 @@
 This document provides a starting base for configuring all major SailPoint IdentityIQ (IIQ) features in a test lab environment integrated with FreeIPA via the LDAP connector. It assumes:
 - IIQ (version 8.3 or later) is installed and accessible (e.g., `http://localhost:8080/identityiq`).
 - FreeIPA is set up as an application in IIQ with LDAP connector, aggregating users and groups.([Check the Installation steps here](./freeipa_deployment.md))
-- Admin access to IIQ for configuration.
+- Admin access to IIQ for configuration. ([Check the Installation steps and Login here](./environment_setup.md))
 
 The guide covers all core IIQ features: Lifecycle Manager, Compliance Manager, Password Management, Access Risk Management, and additional features like SSO, auditing, and reporting. Each section includes configuration steps,and pictures.
 
@@ -42,6 +42,7 @@ Lifecycle Manager handles access requests, provisioning, and lifecycle events (e
 5. **Schedule Tasks**:
    - **Setup > Tasks > New Task > Lifecycle Event Refresh**.
    - Schedule daily to process events.
+
 
 ### Screenshot Placeholder
 - [Add screenshot: Lifecycle Manager settings page]
