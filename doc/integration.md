@@ -77,6 +77,9 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
      - Accounts: `(objectClass=posixAccount)` to fetch users.
      - Groups: `(objectClass=posixGroup)` to fetch groups.
 
+<img width="1367" height="784" alt="image" src="https://github.com/user-attachments/assets/35a98343-ceac-4026-b354-17a8600018ec" />
+
+
 5. **Correlation Configuration**:
    - Go to **Correlation** tab.
    - Map FreeIPA `uid` to IIQ identity attribute (e.g., `employeeId` or `name`).
@@ -100,16 +103,12 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
 7. **Test Connection**:
    - Click **Test Connection** in the application config.
    - Verify connectivity to FreeIPA (check logs in `/opt/tomcat/logs/iiq.log` if it fails).
+     
      <img width="1369" height="787" alt="image" src="https://github.com/user-attachments/assets/30c2dfb0-3bd6-4e7d-a074-11e60c5f6d54" />
 
 
 8. **Save Application**:
    - Click **Save** to store the configuration.
-
-### Screenshot Placeholder
-- [Add screenshot: Application Definition settings page]
-- [Add screenshot: Schema configuration for accounts]
-- [Add screenshot: Group schema attributes]
 
 ### Test
 - Go to **Debug > Applications > FreeIPA_LDAP**.
