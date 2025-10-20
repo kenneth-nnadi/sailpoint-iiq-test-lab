@@ -45,7 +45,7 @@ Add text here.
 ### Policy Management
 Add text here.
 
-<img width="826" height="240" alt="Policy Management" src="https://github.com/user-attachments/assets/596cd65c-b371-49d0-a2b1-c68578ef659b" />
+<img width="826" height="826" alt="Policy Management" src="https://github.com/user-attachments/assets/596cd65c-b371-49d0-a2b1-c68578ef659b" />
 
 ---
 
