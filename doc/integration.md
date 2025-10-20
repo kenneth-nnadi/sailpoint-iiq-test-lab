@@ -11,6 +11,201 @@ The guide covers all core IIQ features: Lifecycle Manager, Compliance Manager, P
 
 **Note**: Refer to [SailPoint Documentation](https://documentation.sailpoint.com/identityiq/help/) for version-specific details.
 
+## 1. Application Definition
+
+The Application Definition configures FreeIPA as a managed system in IIQ, enabling connectivity and schema mapping for users and groups via the LDAP connector.
+
+### Configuration
+1. **Access Application Definition**:
+   - Log in to IIQ as an admin.
+   - Navigate to **Setup > Applications > Application Definition**.
+   - Click **+ New Application** to start.
+
+2. **Basic Settings**:
+   - **Name**: `FreeIPA_LDAP` (descriptive, unique name).
+   - **Type**: Select **LDAP** from the connector dropdown.
+   - **Owner**: Assign an admin user (e.g., `admin`).
+   - **Description**: "FreeIPA LDAP integration for identity governance."
+  
+     <img width="1373" height="788" alt="image" src="https://github.com/user-attachments/assets/05ad3ad9-f99f-479a-a3e7-756e83f2ae04" />
+
+
+3. **Connection Settings**:
+   - Configure the LDAP connector to connect to FreeIPA:
+     | Field                  | Value/Example                          | Description |
+     |------------------------|----------------------------------------|-------------|
+     | **Host**              | `freeipa.example.com`                 | FreeIPA server hostname or IP. |
+     | **Port**              | `636`                                 | Use 389 for non-SSL (not recommended). |
+     | **Base DN**           | `dc=example,dc=com`                   | Root suffix for LDAP searches. |
+     | **Bind DN**           | `uid=iiq-service,cn=users,cn=accounts,dc=example,dc=com` | Service account DN for authentication. |
+     | **Bind Credentials**  | `[Enter password]`                    | Password for the service account. |
+     | **Authentication Type**| `simple`                              | Use `GSSAPI` for Kerberos if configured. |
+     | **Use SSL**           | Enabled                               | Check for LDAPS (recommended). |
+     | **Truststore**        | `/path/to/truststore.jks`             | Path to Java truststore with FreeIPA CA cert (if custom SSL). |
+     | **Connection Timeout**| `30`                                  | Seconds for connection timeout. |
+     | **Search Scope**      | `SUBTREE`                             | Search all levels under Base DN. |
+     | **IT Role Type**      | `IT`                                  | For provisioning policies. |
+
+<img width="1370" height="784" alt="image" src="https://github.com/user-attachments/assets/8fdf6499-d8be-4c25-9e80-9a1c02cf6a19" />
+
+
+4. **Schema Configuration**:
+   - Go to the **Schema** tab in the application config.
+   - **Account Schema** (for FreeIPA users):
+     - **ObjectClass**: `posixAccount`, `inetOrgPerson`, `ipaUser`.
+     - **Attributes**:
+       | Attribute Name | LDAP Attribute | Type   | Description |
+       |----------------|----------------|--------|-------------|
+       | `nativeIdentity` | `uid`         | String | Unique user ID (e.g., `testuser`). |
+       | `displayName`  | `cn`           | String | Full name (e.g., `Test User`). |
+       | `firstName`    | `givenName`    | String | First name. |
+       | `lastName`     | `sn`           | String | Last name. |
+       | `email`        | `mail`         | String | Email address. |
+       | `uidNumber`    | `uidNumber`    | Integer | POSIX user ID. |
+       | `groups`       | `memberOf`     | Multi-Valued String | Groups user belongs to (DN format). |
+     - Set `uid` as the **Identity Attribute** for correlation.
+   - **Group Schema** (for FreeIPA groups/entitlements):
+     - **ObjectClass**: `posixGroup`, `groupOfNames`, `ipaUserGroup`.
+     - **Attributes**:
+       | Attribute Name | LDAP Attribute | Type   | Description |
+       |----------------|----------------|--------|-------------|
+       | `name`         | `cn`           | String | Group name (e.g., `admins`). |
+       | `gidNumber`    | `gidNumber`    | Integer | POSIX group ID. |
+       | `members`      | `memberUid`    | Multi-Valued String | List of user UIDs in the group. |
+     - Enable **Multi-Valued Groups** to handle multiple group memberships.
+   - **Filters**:
+     - Accounts: `(objectClass=posixAccount)` to fetch users.
+     - Groups: `(objectClass=posixGroup)` to fetch groups.
+
+5. **Correlation Configuration**:
+   - Go to **Correlation** tab.
+   - Map FreeIPA `uid` to IIQ identity attribute (e.g., `employeeId` or `name`).
+   - Example: `application.uid = identity.employeeId`.
+
+6. **Provisioning Settings**:
+   - Go to **Provisioning** tab.
+   - Enable **Create**, **Update**, **Delete**, **Enable/Disable**, and **Unlock** operations.
+   - Create provisioning policy:
+     - **Create Policy**:
+       | Field       | Value/Example       | Description |
+       |-------------|---------------------|-------------|
+       | `uid`       | `identity.name`     | Generate UID from IIQ identity name. |
+       | `givenName` | `identity.firstName`| Map first name. |
+       | `sn`        | `identity.lastName` | Map last name. |
+       | `cn`        | `identity.displayName` | Full name. |
+       | `mail`      | `identity.email`    | Email address. |
+       | `uidNumber` | `[Auto-generate]`   | Let FreeIPA assign POSIX UID. |
+     - **Update/Delete**: Similar mappings, with conditions for modification.
+
+7. **Test Connection**:
+   - Click **Test Connection** in the application config.
+   - Verify connectivity to FreeIPA (check logs in `/opt/tomcat/logs/iiq.log` if it fails).
+     <img width="1369" height="787" alt="image" src="https://github.com/user-attachments/assets/30c2dfb0-3bd6-4e7d-a074-11e60c5f6d54" />
+
+
+8. **Save Application**:
+   - Click **Save** to store the configuration.
+
+### Screenshot Placeholder
+- [Add screenshot: Application Definition settings page]
+- [Add screenshot: Schema configuration for accounts]
+- [Add screenshot: Group schema attributes]
+
+### Test
+- Go to **Debug > Applications > FreeIPA_LDAP**.
+- Verify application object details (connection, schema).
+- Run a quick LDAP query from IIQ server to confirm:
+  ```bash
+  ldapsearch -x -H ldaps://freeipa.example.com -D "uid=iiq-service,..." -W -b "dc=example,dc=com" "(uid=testuser)"
+  ```
+- Check **Debug > Logs** for connection errors.
+
+## 2. Account Aggregation
+
+Account Aggregation imports FreeIPA users and groups into IIQ to populate identities and entitlements.
+
+### Configuration
+1. **Create Account Aggregation Task**:
+   - Navigate to **Setup > Tasks > New Task**.
+   - Select **Account Aggregation**.
+   - **Settings**:
+     | Field            | Value/Example              | Description |
+     |------------------|----------------------------|-------------|
+     | **Name**         | `FreeIPA_Account_Aggregation` | Descriptive task name. |
+     | **Application**  | `FreeIPA_LDAP`            | Select the FreeIPA app. |
+     | **Object Type**  | `account`                 | Import user accounts. |
+     | **Filter**       | `(objectClass=posixAccount)` | LDAP filter for users. |
+     | **Incremental**  | Disabled                  | Full sync for initial setup. |
+     | **Max Records**  | `1000`                    | Limit for testing (adjust for prod). |
+     | **Promote Attributes** | `uid, cn, mail, memberOf` | Attributes to store in IIQ. |
+
+2. **Create Group Aggregation Task**:
+   - **Setup > Tasks > New Task > Account Aggregation**.
+   - **Settings**:
+     | Field            | Value/Example              | Description |
+     |------------------|----------------------------|-------------|
+     | **Name**         | `FreeIPA_Group_Aggregation` | Descriptive task name. |
+     | **Application**  | `FreeIPA_LDAP`            | Select the FreeIPA app. |
+     | **Object Type**  | `group`                   | Import group entitlements. |
+     | **Filter**       | `(objectClass=posixGroup)` | LDAP filter for groups. |
+     | **Incremental**  | Disabled                  | Full sync for initial setup. |
+     | **Max Records**  | `500`                     | Limit for testing. |
+     | **Promote Attributes** | `cn, gidNumber, memberUid` | Attributes to store in IIQ. |
+
+3. **Correlation Rule**:
+   - **Setup > Identity Configuration > Correlation**.
+   - Example rule: Map FreeIPA `uid` to IIQ `employeeId` or `name`.
+   - Create rule in **Setup > Rules**:
+     ```xml
+     <Rule name="FreeIPA_Correlation" type="Correlation">
+       <Source>
+         <![CDATA[
+           import sailpoint.object.*;
+           return identity.getAttribute("employeeId") == account.getAttribute("uid");
+         ]]>
+       </Source>
+     </Rule>
+     ```
+
+4. **Schedule Tasks**:
+   - Go to **Setup > Scheduler**.
+   - Add tasks to run daily:
+     - **FreeIPA_Account_Aggregation**: 2 AM.
+     - **FreeIPA_Group_Aggregation**: 3 AM.
+   - Enable **Automatic Execution**.
+
+5. **Identity Refresh**:
+   - After aggregation, run **Identity Refresh** to correlate accounts to identities:
+     - **Setup > Tasks > New Task > Identity Refresh**.
+     - Select **Full Refresh**.
+     - Enable **Correlate Accounts** and **Refresh Entitlements**.
+
+### Screenshot Placeholder
+- [Add screenshot: Account Aggregation task setup]
+- [Add screenshot: Group Aggregation task configuration]
+- [Add screenshot: Identity Refresh task results]
+
+### Test
+- Run **FreeIPA_Account_Aggregation** task (**Monitor > Task Results**).
+- Verify imported accounts in **Identities > [User] > Accounts**.
+- Run **FreeIPA_Group_Aggregation** task.
+- Check entitlements in **Applications > FreeIPA_LDAP > Entitlements**.
+- Run **Identity Refresh** and confirm identities link to FreeIPA accounts (e.g., `uid=testuser` maps to an IIQ identity).
+- Check logs (`/opt/tomcat/logs/iiq.log`) for errors.
+
+## Troubleshooting
+
+- **Application Definition**:
+  - **Connection Failure**: Verify host, port, bind DN, and SSL settings. Import FreeIPA CA cert to truststore if using LDAPS.
+  - **Schema Errors**: Ensure `uid` is unique and `memberOf` is multi-valued. Use LDAP browser (e.g., Apache Directory Studio) to validate schema.
+  - **Logs**: Check **Debug > Logs** or `/opt/tomcat/logs/iiq.log`.
+- **Account Aggregation**:
+  - **No Accounts Imported**: Confirm filter `(objectClass=posixAccount)` matches FreeIPA users. Test with `ldapsearch`.
+  - **Correlation Issues**: Verify correlation rule in **Debug > Rules**. Check identity attribute mappings.
+  - **Performance**: Limit `Max Records` for initial tests; increase for full sync.
+- **General**: Use **Debug Pages** (`http://iiq.example.com:8080/identityiq/debug`) to inspect application and task objects.
+
+
 ## 1. Lifecycle Manager
 
 Lifecycle Manager handles access requests, provisioning, and lifecycle events (e.g., joiner/mover/leaver).
