@@ -21,7 +21,7 @@ Log in to the UI
 	•	Password: the admin password you set during install (e.g. SailPoint123!)
 	3.	If you see a certificate warning, proceed to next section to trust the CA (recommended for production).
 
-
+Add text here 
 ￼
 <img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/5fbd20c0-8ff9-464c-83ae-1f2b88497928" />
 
