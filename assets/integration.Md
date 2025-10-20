@@ -6,9 +6,7 @@ Init-lcm.xml
 Init-pam.xml
 
 
-￼<img width="826" alt="image" src="https://github.com/user-attachments/assets/b4b77710-dd94-4087-b90c-82fb2ff5a1a5">
-
-￼
+￼<img width="468" height="332" alt="image" src="https://github.com/user-attachments/assets/decb0671-de2b-4808-9343-1f84099f0ba0" />
 
 Web UI 
 
