@@ -8,6 +8,8 @@ Init-pam.xml
 
 ￼<img width="468" height="332" alt="image" src="https://github.com/user-attachments/assets/decb0671-de2b-4808-9343-1f84099f0ba0" />
 
+<img width="468" height="251" alt="image" src="https://github.com/user-attachments/assets/06a930ac-3088-4f58-b833-90c1fcc0a32d" />
+
 Web UI 
 
 Log in to the UI
