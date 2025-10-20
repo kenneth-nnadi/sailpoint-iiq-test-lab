@@ -285,6 +285,8 @@ Role Management organizes access into business-friendly roles.
 ### Screenshot Placeholder
 - [Add screenshot: Role creation interface]
 - [Add screenshot: Role mining results]
+- <img width="468" height="281" alt="image" src="https://github.com/user-attachments/assets/6e7084e7-1a32-4dd5-a060-0bdfc3b4da19" />
+
 
 ### Test
 - Create an "IT Admin" role.
