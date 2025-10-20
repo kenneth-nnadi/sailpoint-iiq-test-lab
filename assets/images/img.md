@@ -59,4 +59,4 @@ Add text here.
 ### Audit Reports
 Add text here.
 
-<img height="240" alt="Audit Reports" src="https://github.com/user-attachments/assets/94a13dac-0037-4beb-b998-528c23bd4a79" />
+<img height="826" alt="Audit Reports" src="https://github.com/user-attachments/assets/94a13dac-0037-4beb-b998-528c23bd4a79" />
