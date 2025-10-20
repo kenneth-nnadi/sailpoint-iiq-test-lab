@@ -7,7 +7,7 @@ This document provides a starting base for configuring all major SailPoint Ident
 - FreeIPA is set up as an application in IIQ with LDAP connector, aggregating users and groups.
 - Admin access to IIQ for configuration.
 
-The guide covers all core IIQ features: Lifecycle Manager, Compliance Manager, Password Management, Access Risk Management, and additional features like SSO, auditing, and reporting. Each section includes configuration steps, placeholder for screenshots (to be added later), and test instructions. Customize this base as needed for your lab.
+The guide covers all core IIQ features: Lifecycle Manager, Compliance Manager, Password Management, Access Risk Management, and additional features like SSO, auditing, and reporting. Each section includes configuration steps,and pictures.
 
 **Note**: Refer to [SailPoint Documentation](https://documentation.sailpoint.com/identityiq/help/) for version-specific details.
 
