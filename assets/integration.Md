@@ -27,7 +27,7 @@
 ### Dashboard Overview
 Add text here.
 
-<img width="826" height="240" alt="IAM Dashboard" src="https://github.com/user-attachments/assets/5fbd20c0-8ff9-464c-83ae-1f2b88497928" />
+<img width="826" height="413" alt="IAM Dashboard" src="https://github.com/user-attachments/assets/5fbd20c0-8ff9-464c-83ae-1f2b88497928" />
 
 ---
 
