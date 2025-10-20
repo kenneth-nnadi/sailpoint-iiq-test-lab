@@ -314,7 +314,11 @@
    - Accept license.
    - Set admin user (default: spadmin/admin).
    - Run diagnostics.
-4. Log in.
+4. Log in Dashboard:
+
+   
+   <img width="468" height="251" alt="image" src="https://github.com/user-attachments/assets/6086ecca-dde2-4773-b4fa-54fea0f0b2ca" />
+
 
 ## Step 10: Post-Installation Tasks
 - **Connectors:** Deploy from Compass to `/opt/tomcat/webapps/identityiq/WEB-INF/lib/`.
