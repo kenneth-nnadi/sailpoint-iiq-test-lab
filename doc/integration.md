@@ -41,10 +41,9 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
      | **Bind Credentials**  | `[Enter password]`                    | Password for the service account. |
      | **Authentication Type**| `simple`                              | Use `GSSAPI` for Kerberos if configured. |
      | **Use SSL**           | Enabled                               | Check for LDAPS (recommended). |
-     | **Truststore**        | `/path/to/truststore.jks`             | Path to Java truststore with FreeIPA CA cert (if custom SSL). |
      | **Connection Timeout**| `30`                                  | Seconds for connection timeout. |
-     | **Search Scope**      | `SUBTREE`                             | Search all levels under Base DN. |
-     | **IT Role Type**      | `IT`                                  | For provisioning policies. |
+     | **Authentication Search Attributes**      | `uid`                             | Specifies the user attribute used to identify and authenticate accounts.
+     
 
 <img width="1370" height="784" alt="image" src="https://github.com/user-attachments/assets/8fdf6499-d8be-4c25-9e80-9a1c02cf6a19" />
 
@@ -499,11 +498,11 @@ Role Management organizes access into business-friendly roles.
 
 ## Next Steps
 
-1. Add screenshots to placeholders for visual reference.
-2. Test each feature with a small FreeIPA dataset (e.g., 10 users).
-3. Expand configurations in `configs/freeipa.properties` for advanced settings.
-4. Automate test data creation via `scripts/create_freeipa_users.sh`.
-5. Schedule tasks for ongoing operations (aggregation, certifications, reports).
-6. Explore advanced features (e.g., PAM, AI-driven analytics) if licensed.
 
-This document is a starting point. Customize based on your lab's requirements and add screenshots to enhance clarity.
+1. Test each feature with a small FreeIPA dataset (e.g., 10 users).
+2. Expand configurations in `configs/freeipa.properties` for advanced settings.
+3. Automate test data creation via `scripts/create_freeipa_users.sh`.
+4. Schedule tasks for ongoing operations (aggregation, certifications, reports).
+5. Explore advanced features (e.g., PAM, AI-driven analytics) if licensed.
+
+
