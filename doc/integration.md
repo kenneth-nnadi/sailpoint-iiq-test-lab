@@ -27,7 +27,7 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
    - **Owner**: Assign an admin user (e.g., `admin`).
    - **Description**: "FreeIPA LDAP integration for identity governance."
   
-     <img width="1373" height="788" alt="image" src="https://github.com/user-attachments/assets/05ad3ad9-f99f-479a-a3e7-756e83f2ae04" />
+<img width="1373" height="788" alt="image" src="https://github.com/user-attachments/assets/05ad3ad9-f99f-479a-a3e7-756e83f2ae04" />
 
 
 3. **Connection Settings**:
@@ -41,7 +41,6 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
      | **Bind Credentials**  | `[Enter password]`                    | Password for the service account. |
      | **Authentication Type**| `simple`                              | Use `GSSAPI` for Kerberos if configured. |
      | **Use SSL**           | Enabled                               | Check for LDAPS (recommended). |
-     | **Connection Timeout**| `30`                                  | Seconds for connection timeout. |
      | **Authentication Search Attributes**      | `uid`                             | Specifies the user attribute used to identify and authenticate accounts.
      
 
@@ -103,7 +102,7 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
    - Click **Test Connection** in the application config.
    - Verify connectivity to FreeIPA (check logs in `/opt/tomcat/logs/iiq.log` if it fails).
      
-     <img width="1369" height="787" alt="image" src="https://github.com/user-attachments/assets/30c2dfb0-3bd6-4e7d-a074-11e60c5f6d54" />
+<img width="1369" height="787" alt="image" src="https://github.com/user-attachments/assets/30c2dfb0-3bd6-4e7d-a074-11e60c5f6d54" />
 
 
 8. **Save Application**:
@@ -137,6 +136,9 @@ Account Aggregation imports FreeIPA users and groups into IIQ to populate identi
      | **Max Records**  | `1000`                    | Limit for testing (adjust for prod). |
      | **Promote Attributes** | `uid, cn, mail, memberOf` | Attributes to store in IIQ. |
 
+<img width="1038" height="788" alt="image" src="https://github.com/user-attachments/assets/b05eae1e-fd75-40bf-a29d-09ad386db06d" />
+
+
 2. **Create Group Aggregation Task**:
    - **Setup > Tasks > New Task > Account Aggregation**.
    - **Settings**:
@@ -150,8 +152,14 @@ Account Aggregation imports FreeIPA users and groups into IIQ to populate identi
      | **Max Records**  | `500`                     | Limit for testing. |
      | **Promote Attributes** | `cn, gidNumber, memberUid` | Attributes to store in IIQ. |
 
+<img width="1036" height="794" alt="image" src="https://github.com/user-attachments/assets/65183341-491a-4512-b51d-66525291c16c" />
+
+The Task/group aggregation task result 
+<img width="1049" height="788" alt="image" src="https://github.com/user-attachments/assets/837f2216-cde2-4c31-b45b-88a95f59bc06" />
+
+
 3. **Correlation Rule**:
-   - **Setup > Identity Configuration > Correlation**.
+   - **Gear button > Global settings > identity mapping**.
    - Example rule: Map FreeIPA `uid` to IIQ `employeeId` or `name`.
    - Create rule in **Setup > Rules**:
      ```xml
@@ -164,24 +172,25 @@ Account Aggregation imports FreeIPA users and groups into IIQ to populate identi
        </Source>
      </Rule>
      ```
-
+     
+<img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/0e21ce0f-48e8-406f-a78c-89f3b8841b94" />
 4. **Schedule Tasks**:
    - Go to **Setup > Scheduler**.
    - Add tasks to run daily:
      - **FreeIPA_Account_Aggregation**: 2 AM.
      - **FreeIPA_Group_Aggregation**: 3 AM.
    - Enable **Automatic Execution**.
+     
+To correlate identities or manager correlation, first run an account aggregation above and the run a refrsh task to aggregate the account after identity mapping.
 
 5. **Identity Refresh**:
-   - After aggregation, run **Identity Refresh** to correlate accounts to identities:
-     - **Setup > Tasks > New Task > Identity Refresh**.
-     - Select **Full Refresh**.
-     - Enable **Correlate Accounts** and **Refresh Entitlements**.
+   - After aggregation, run **Refresh Identity cube** to correlate accounts to identities:
+     - **Setup > Tasks > Search (Refresh Identity Cube)**.
+     - Select **Execute in Background**.
+     - **You can schedule it if you wish** and **Refresh Entitlements**.
+       
+<img width="1031" height="741" alt="image" src="https://github.com/user-attachments/assets/51719d3f-45f9-491c-891f-0641fd6c56d7" />
 
-### Screenshot Placeholder
-- [Add screenshot: Account Aggregation task setup]
-- [Add screenshot: Group Aggregation task configuration]
-- [Add screenshot: Identity Refresh task results]
 
 ### Test
 - Run **FreeIPA_Account_Aggregation** task (**Monitor > Task Results**).
