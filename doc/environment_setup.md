@@ -31,6 +31,7 @@
   - [Step 10: Post-Installation Tasks](#step-10-post-installation-tasks)
   - [Troubleshooting](#troubleshooting)
   - [Verification](#verification)
+  - [Starting Sailpoint IIQ](#starting-Sailpoint-IIQ)
   - [References](#references)
   - [NEXT: IIQ User Provisioning Using FreeIPA](#next-step)
 
@@ -340,7 +341,7 @@
 - Run `./iiq version`: Shows 8.3.
 - Check DB: `mysql> SHOW TABLES;` (~200 tables).
 
-##Starting Sailpoint IIQ.
+## Starting Sailpoint IIQ
 - First start up mysql server ```sudo systemctl start mysqld.service```
 - check the status ```sudo systemctl status mysqld.service```
 - start up tomcat webserver ```Sudo systemctl start tomcat.service```
