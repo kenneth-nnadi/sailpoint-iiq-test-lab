@@ -339,8 +339,14 @@
 - Admin login works.
 - Run `./iiq version`: Shows 8.3.
 - Check DB: `mysql> SHOW TABLES;` (~200 tables).
-- 
 
+##Starting Sailpoint IIQ.
+- First start up mysql server ` sudo systemctl start mysqld.service`
+- check the status ` sudo systemctl status mysqld.service`
+- start up tomcat webserver ` Sudo systemctl start tomcat.service`
+- check status ` sudo systemctl status tomcat.service`
+- login to Sailpoint using `http://localhost:8080/identityiq/home.jsf`
+  
 ## References
 - [IdentityIQ 8.3 Installation Guide](https://community.sailpoint.com)
 - [Tomcat 9 Downloads](https://tomcat.apache.org/download-90.cgi)
