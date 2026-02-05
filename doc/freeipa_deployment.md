@@ -214,12 +214,39 @@ echo "  ipa user-find"
 
 ## 5. Verification
 
+### Starting up FreIPA 
+
+FreeIPA is an integrated identity management platform that includes LDAP, Kerberos, DNS, PKI, and HTTP services. All FreeIPA components must be managed using the `ipactl` command.
+
+To start all FreeIPA services:
+
+```bash
+sudo ipactl start
+```
+
 ### Check FreeIPA Status
 ```bash
 ipa ping
 sudo systemctl status ipa
+sudo ipactl status
 ```
+Expected services include:
+	•	Directory Server
+	•	Kerberos Key Distribution Center
+	•	HTTPD
+	•	PKI Tomcat
+	•	DNS (if installed)
 
+To ensure FreeIPA starts automatically when the server reboots:
+```
+sudo systemctl enable ipa
+```
+ Verify FreeIPA Health
+
+Confirm that the FreeIPA server is responding correctly:
+```
+ipa ping
+```
 ### List Users
 ```bash
 ipa user-find
@@ -234,6 +261,10 @@ ldapsearch -x -H ldap://ipa.demo.local:389 -D "uid=admin,cn=users,cn=accounts,dc
 - Expected: Lists all users under `cn=users,cn=accounts,dc=demo,dc=local`.
 
 Login WebUI Dashboard 
+Open a browser and navigate to:
+```
+https://ipa.demo.local
+```
 
 <img width="468" height="240" alt="image" src="https://github.com/user-attachments/assets/9ecf6138-f12a-4599-b8f1-0757e43e72a9" />
 
