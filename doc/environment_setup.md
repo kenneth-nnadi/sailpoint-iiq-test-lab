@@ -370,5 +370,5 @@
 - [SailPoint Docs](https://documentation.sailpoint.com/identityiq)
 
 ## NEXT: IIQ User Provisioning Using FreeIPA
-[Open](doc/freeipa_deployment.md) for database, Ldap and Kerberos Integration on iiq.
+[Open](sailpoint-iiq-test-lab/doc/freeipa_deployment.md) for database, Ldap and Kerberos Integration on iiq.
 
