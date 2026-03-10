@@ -158,7 +158,7 @@ The Task/group aggregation task result
 <img width="1049" height="788" alt="image" src="https://github.com/user-attachments/assets/837f2216-cde2-4c31-b45b-88a95f59bc06" />
 
 
-3. **Correlation Rule**:
+3. **Correlation Rule** (Through Identity Mapping): 
    - **Gear button > Global settings > identity mapping**.
    - Example rule: Map FreeIPA `uid` to IIQ `employeeId` or `name`.
    - Create rule in **Setup > Rules**:
@@ -172,16 +172,20 @@ The Task/group aggregation task result
        </Source>
      </Rule>
      ```
-     
-<img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/0e21ce0f-48e8-406f-a78c-89f3b8841b94" />
+<img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/98300e87-3571-477f-815f-20914c582fe5" />
+
+<!-- <img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/0e21ce0f-48e8-406f-a78c-89f3b8841b94" /> -->
 4. **Schedule Tasks**:
    - Go to **Setup > Scheduler**.
    - Add tasks to run daily:
      - **FreeIPA_Account_Aggregation**: 2 AM.
      - **FreeIPA_Group_Aggregation**: 3 AM.
    - Enable **Automatic Execution**.
+
+<img width="1031" height="741" alt="image" src="https://github.com/user-attachments/assets/5e464632-79c0-461b-bf3f-38f54d14fb83" />
+
      
-To correlate identities or manager correlation, first run an account aggregation above and the run a refrsh task to aggregate the account after identity mapping.
+To correlate identities or manager correlation, first run an account aggregation above and the run a refrsh task to aggregate the account after identity mapping. Manager correlation is used when there is no autoritative source already existing in sailpoint. The account correlation is when there is alredy existing authoritative source in the sailpoint application. 
 
 5. **Identity Refresh**:
    - After aggregation, run **Refresh Identity cube** to correlate accounts to identities:
