@@ -33,8 +33,8 @@
   - [Verification](#verification)
   - [Starting Sailpoint IIQ](#starting-Sailpoint-IIQ)
   - [References](#references)
-  - [IIQ User Provisioning Using FreeIPA](#NEXT:IIQ-User-Provisioning-Using-FreeIPA)
   - [NEXT: IIQ User Provisioning Using FreeIPA](#NEXT:IIQ-User-Provisioning-Using-FreeIPA)
+  - [NEXT: IIQ User Provisioning Using FreeIPA](#next-iiq-user-provisioning-using-freeipa)
 
 
 ## Prerequisites
