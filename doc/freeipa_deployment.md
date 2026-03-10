@@ -272,7 +272,7 @@ https://ipa.demo.local
 ---
 
 ## 6. Next Steps
-1. **SailPoint Integration**:
+1. **SailPoint Integration**: [Open to see in full the integration](integration.md)
    - Configure SailPoint Identityiiq to connect to FreeIPA:
      - **LDAP URL**: `ldap://ipa.demo.local:389` or `ldaps://ipa.demo.local:636`
      - **Bind DN**: `uid=admin,cn=users,cn=accounts,dc=demo,dc=local`
