@@ -185,7 +185,7 @@ The Task/group aggregation task result
 <img width="1031" height="741" alt="image" src="https://github.com/user-attachments/assets/5e464632-79c0-461b-bf3f-38f54d14fb83" />
 
      
-To correlate identities or manager correlation, first run an account aggregation above and the run a refrsh task to aggregate the account after identity mapping. Manager correlation is used when there is no autoritative source already existing in sailpoint. The account correlation is when there is alredy existing authoritative source in the sailpoint application. 
+To correlate identities or manager correlation, first run an account aggregation above and the run a refrsh task to aggregate the account after identity mapping. Manager correlation is used when there is no authoritative source already existing in sailpoint. The account correlation is when there is alredy existing authoritative source in the sailpoint application. 
 
 5. **Identity Refresh**:
    - After aggregation, run **Refresh Identity cube** to correlate accounts to identities:
