@@ -107,6 +107,12 @@ The Application Definition configures FreeIPA as a managed system in IIQ, enabli
 
 8. **Save Application**:
    - Click **Save** to store the configuration.
+     
+**Delimited File connection**
+Below is the test of a delimited file application from the local machine. Data source can be two or more and mostly thesame in an enterprise environment.
+
+<img width="1369" height="787" alt="image" src="https://github.com/user-attachments/assets/ee2db4e2-8ead-4995-82f2-c380410ad29b" />
+
 
 ### Test
 - Go to **Debug > Applications > FreeIPA_LDAP**.
