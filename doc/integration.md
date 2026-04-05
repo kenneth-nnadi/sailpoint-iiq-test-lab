@@ -180,6 +180,10 @@ The Task/group aggregation task result
      ```
 <img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/98300e87-3571-477f-815f-20914c582fe5" />
 
+There is also creation rule, and many othe rtypes of rules. but basically, to automate creation, aggregation or correlation, one can write rule to automatically do this whenever an account is being provisioned in sailoint. E.g of correlation rule is below: 
+
+<img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/39dc4137-05bb-4b96-8b2e-dccd6bbc0a3d" />
+
 <!-- <img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/0e21ce0f-48e8-406f-a78c-89f3b8841b94" /> -->
 4. **Schedule Tasks**:
    - Go to **Setup > Scheduler**.
