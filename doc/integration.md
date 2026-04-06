@@ -180,7 +180,7 @@ The Task/group aggregation task result
      ```
 <img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/98300e87-3571-477f-815f-20914c582fe5" />
 
-There is also creation rule, and many othe rtypes of rules. but basically, to automate creation, aggregation or correlation, one can write rule to automatically do this whenever an account is being provisioned in sailoint. E.g of correlation rule is below: 
+There is also **creation rule**, and many othe types of rules. but basically, to automate creation, aggregation or correlation etc, one can write rule to automatically do this whenever an account is being provisioned in sailoint. E.g of correlation rule is below: 
 
 <img width="1046" height="794" alt="image" src="https://github.com/user-attachments/assets/39dc4137-05bb-4b96-8b2e-dccd6bbc0a3d" />
 
